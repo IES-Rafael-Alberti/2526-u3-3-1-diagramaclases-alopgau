@@ -1,0 +1,21 @@
+@startuml
+class Autor {
+- nombre: String
+- apellido: String
+- nacionalidad: String
+- fechaNacimiento: String
++ escribir(): void
++ /getNombreCompleto(): String 
+}
+class Libro {
+- titulo: String
+- isbn: String
+- numeroPaginas: int
+- precio: float
++ leer(): void
++ getTitulo(): String
++ getPrecio(): String
+}
+Autor "1" *-- "1..*" Libro : escribe >
+note right of Autor :/getNombreCompleto() se calcula\nconcatenando los atributos nombre y apellidos
+@enduml
