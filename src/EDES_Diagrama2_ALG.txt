@@ -1,0 +1,44 @@
+@startuml
+class Curso {
+- código: int
++ nombre: String
++ descripción: String
++ precio_creditos: int
+- /num_matriculados: int
++ Nivel: tipo_nivel
+}
+class Profesor {
+- id: int
+- correo: String
+- departamento: String
+- impartir(): void
+- evaluar(): void
+- /getCursosImpartidos(): String
+}
+
+
+enum tipo_nivel {
+Grado
+Máster
+Doctorado
+}
+class Estudiante {
+n_exp: int
+nombre: String
+email: String
+- darclase(): void
+- estudiar(): void
+- presentar_examen(): void
+}
+
+class Matricula {
+fecha_matricula: datetime
+nota:
+}
+
+Profesor "1" --o "*o0..*" Curso : imparte >
+Estudiante "*o0..*" --o "1..n" Curso : se matricula >
+note right of Estudiante: Cuando un estudiante se matricula,\nse ejecuta setFechaMatricula()\n y se actualiza la nota
+note right of Curso: /num_matriculados se calcula mediante la relación
+note right of Profesor: /getCursosImpartidos() se calcula mediante la relación
+@enduml
